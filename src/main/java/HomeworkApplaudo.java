@@ -13,6 +13,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class HomeworkApplaudo {
+	//Author: Chantell Alvarenga
  public static WebDriver driver;
 	 
 	 private static void navigateToBrowser(String navegador) {
@@ -83,7 +84,22 @@ public class HomeworkApplaudo {
 		   //Sort the list by alphabetical order and print
 		   Collections.sort(sortedButtons);
 		   System.out.println("cssSelector: " + sortedButtons);
+	    
+		   		//TagName
+		   List<WebElement> btnmenu = driver.findElements(By.tagName("button"));
+		   sortedButtons.clear();
+		   n =  btnmenu.size(); 
+		   for(int j=0; j<n; j++) {
+			   String txt =  btnmenu.get(j).getAttribute("innerHTML"); 
+			   if(txt.equals("Home") || txt.equals("Practice") || txt.equals("Login") || txt.equals("Signup")) 
+			   {  
+				   sortedButtons.add(txt);
+			   }
+		   }
+		   Collections.sort(sortedButtons);
+		   System.out.println("tagName: " + sortedButtons);
 		   System.out.println("\n");
+		   
 		  
 		   //Find & print title
 		   System.out.println("-------- c. Title --------");
@@ -219,8 +235,7 @@ public class HomeworkApplaudo {
 			  
 		   }
 		   
-		
-		   	//Name
+		   //Name
 		   System.out.println("\n-------- Using Name Locator --------");
 		   table = driver.findElement(By.name("courses"));
 		   rows = table.findElements(By.tagName("td")); //From 0 To n rows
@@ -265,10 +280,18 @@ public class HomeworkApplaudo {
 		   System.out.println("xpath: " + lblDisplayEx.getText());
 		   lblDisplayEx = driver.findElement(By.cssSelector("body > div:nth-child(5) > div.right-align > fieldset:nth-child(1) > legend"));
 		   System.out.println("cssSelector: " + lblDisplayEx.getText());
-		   //IDEA colocar los resultados en una lista , recorrerla y validar que la posicion coincida con Element Display y luego imprimir
-		   //List<WebElement> lblDisplayExa = driver.findElements(By.tagName("legend"));
-		   //System.out.println(lblDisplayExa);
 		   
+		   List<WebElement> lbldisplay = driver.findElements(By.tagName("legend"));
+		   
+		   int c =  lbldisplay.size();
+		   for(int j=0; j<c; j++) {
+			   String txt =  lbldisplay.get(j).getAttribute("innerHTML"); 
+			   if(txt.equals("Element Displayed Example") ) //If txt == Element Displayed Example
+			   {  
+				   System.out.println("tagName: " + txt);
+			   }
+		   }
+		   		   
 		   System.out.println("\n");
 		   // Find & print iframe
 		   System.out.println("-------- k. iframe --------");
@@ -289,8 +312,18 @@ public class HomeworkApplaudo {
 		   System.out.println("xpath: " + btnLogin.getText());
 		   btnLogin = driver.findElement(By.cssSelector("body > header > div > button:nth-child(3)"));
 		   System.out.println("cssSelector: " + btnLogin.getText());
+		   List<WebElement> btnlog = driver.findElements(By.tagName("button"));
 		   
+		   int m =  btnlog.size();
+		   for(int j=0; j<m; j++) {
+			   String txt =  btnlog.get(j).getAttribute("innerHTML");
+			   if(txt.equals("Login") ) //If txt == Login
+			   {  
+				   System.out.println("tagName: " + txt);
+			   }
+		   }
 		   
+			   
 	       driver.quit();
 	   }
 	  
