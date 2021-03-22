@@ -50,7 +50,7 @@ public class HomeworkApplaudo {
 		   System.out.println("xpath: " +logo.getAttribute("src"));
 		   
 		   //Find & print Menu
-		   //XPATH
+		   		//XPATH
 		   List<WebElement> menu = driver.findElements(By.xpath("//header/div[1]"));
 		   List<WebElement> buttons = menu.get(0).findElements(By.tagName("button"));
 		   
@@ -66,7 +66,7 @@ public class HomeworkApplaudo {
 		   Collections.sort(sortedButtons);
 		   System.out.println("Xpath: " + sortedButtons);
 		   
-		   //CSS SELECTOR
+		   		//CSS SELECTOR
 		   menu = driver.findElements(By.cssSelector(" body > header > div [class = 'btn btn-primary']"));
 		   sortedButtons.clear();
 		   n = menu.size();
@@ -123,7 +123,30 @@ public class HomeworkApplaudo {
 		   
 		   // Find & print input dropdown 
 		   
+		   	//xpath
+		   List<WebElement> dpd = driver.findElements(By.xpath("//select[@id='dropdown-class-example']/option"));
+		   //dpd = driver.findElements(By.name("radioButton"));
+		   n = dpd.size();
+		   for(int j=0; j<n; j++) {
+			   System.out.println(dpd.get(j).getAttribute("innerHTML"));
+		   }
+		  
+		   	// CSS Selector
+		  
+		   dpd = driver.findElements(By.cssSelector("#dropdown-class-example > option "));
+		   n = dpd.size();
+		   for(int j=0; j<n; j++) {
+			   System.out.println(dpd.get(j).getAttribute("innerHTML"));
+		   }
 		
+		   	//tagName
+		   
+		   dpd = driver.findElements(By.tagName("option"));
+		   n = dpd.size();
+		   for(int j=0; j<n; j++) {
+			   System.out.println(dpd.get(j).getAttribute("innerHTML"));
+		   }
+		   
 		   // Find & print checkbox number three
 		   
 		   WebElement chkThree = driver.findElement(By.id("checkBoxOption3"));
@@ -142,6 +165,67 @@ public class HomeworkApplaudo {
 		   btnOpen = driver.findElement(By.xpath("//button[@id='openwindow']"));
 		   System.out.println(btnOpen.getText());
 		   
+		   // Find & print table "The web Table example"
+		   
+		   System.out.println("\n-------- Using ID Locator --------");
+		   	//ID
+		   WebElement table = driver.findElement(By.id("product"));
+		   List<WebElement> rows = table.findElements(By.tagName("td")); //From 0 To n rows
+		   
+		   n = rows.size();
+		   String price = "0";
+		   
+		   //Verify each column price of every row
+		   //The first column price start at column 2 and step by 3
+		   for(int j=2; j<n; j=j+3) {
+			   price =  rows.get(j).getAttribute("innerHTML"); //get column price of every row
+			   if(price.equals("25") ) //If price == 25
+			   {   //Print the Name, Course and Price when price == 25
+				   System.out.println( rows.get(j-2).getAttribute("innerHTML") + " | " + "Course is " + rows.get(j-1).getAttribute("innerHTML") + " | " + price);
+			   }
+			  
+		   }
+		   
+		
+		   	//Name
+		   System.out.println("\n-------- Using Name Locator --------");
+		   table = driver.findElement(By.name("courses"));
+		   rows = table.findElements(By.tagName("td")); //From 0 To n rows
+		   n = rows.size();
+		   price = "0";
+		   
+		   //Verify each column price of every row
+		   //The first column price start at column 2 and step by 3
+		   for(int j=2; j<n; j=j+3) {
+			   price =  rows.get(j).getAttribute("innerHTML"); //get column price of every row
+			   if(price.equals("25") ) //If price == 25
+			   {   //Print the Name, Course and Price when price == 25
+				   System.out.println( rows.get(j-2).getAttribute("innerHTML") + " | " + "Course is " + rows.get(j-1).getAttribute("innerHTML") + " | " + price);
+			   }
+		   }
+		   
+		   	//CSS selector
+		   
+		   System.out.println("\n-------- Using css Selector--------");
+		   table = driver.findElement(By.cssSelector("#product"));
+		   rows = table.findElements(By.tagName("td")); //From 0 To n rows
+		   
+		   n = rows.size();
+		   price = "0";
+		   
+		   //Verify each column price of every row
+		   //The first column price start at column 2 and step by 3
+		   for(int j=2; j<n; j=j+3) {
+			   price =  rows.get(j).getAttribute("innerHTML"); //get column price of every row
+			   if(price.equals("25") ) //If price == 25
+			   {   //Print the Name, Course and Price when price == 25
+				   System.out.println( rows.get(j-2).getAttribute("innerHTML") + " | " + "Course is " + rows.get(j-1).getAttribute("innerHTML") + " | " + price);
+			   }
+			  
+		   }
+		   
+		   
+		   
 		   // Find & print label "Element Displayed Example"
 		   
 		   WebElement lblDisplayEx = driver.findElement(By.xpath("//legend[contains(text(),'Element Displayed Example')]"));
@@ -151,6 +235,20 @@ public class HomeworkApplaudo {
 		   //IDEA colocar los resultados en una lista , recorrerla y validar que la posicion coincida con Element Display y luego imprimir
 		   //List<WebElement> lblDisplayExa = driver.findElements(By.tagName("legend"));
 		   //System.out.println(lblDisplayExa);
+		   
+		   // Find & print iframe
+		   
+		   WebElement iframe = driver.findElement(By.id("courses-iframe"));
+		   System.out.println(iframe.getAttribute("src"));
+		   
+		   iframe = driver.findElement(By.tagName("iframe"));
+		   System.out.println(iframe.getAttribute("src"));
+		   
+		   iframe = driver.findElement(By.cssSelector("#courses-iframe"));
+		   System.out.println(iframe.getAttribute("src"));
+		  
+		   
+		   
 		   
 		   //Find & print login
 		   WebElement btnLogin = driver.findElement(By.xpath("//button[contains(text(),'Login')]"));
